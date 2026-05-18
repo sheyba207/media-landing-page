@@ -63,16 +63,22 @@
             </div>
             <form
               class="lead-form"
-              action="https://formsubmit.co/Info@ocnjdaily.media"
+              action="https://api.web3forms.com/submit"
               method="POST"
+              data-web3forms-form
             >
-              <!-- FormSubmit leads are sent to Info@ocnjdaily.media. -->
-              <input type="hidden" name="_subject" value="New Landing Page Lead" />
-              <input type="hidden" name="_template" value="table" />
-              <input type="hidden" name="_captcha" value="false" />
-              <!-- Optional redirect after Vercel deployment:
-              <input type="hidden" name="_next" value="https://your-domain.com/?submitted=true#contact" />
-              -->
+              <input
+                type="hidden"
+                name="access_key"
+                value="350863e5-6368-47df-a6b2-18a434739c1e"
+              />
+              <input type="hidden" name="subject" value="New Landing Page Lead" />
+              <input
+                type="hidden"
+                name="from_name"
+                value="OCNJDaily Media Landing Page"
+              />
+              <input type="checkbox" name="botcheck" style="display: none;" />
 
               <label>
                 <span>Name</span>
@@ -98,9 +104,8 @@
               <button class="button button-primary button-full" type="submit">
                 Request Access
               </button>
-              <p class="form-note">
-                Submissions are sent directly through FormSubmit after you replace the email.
-              </p>
+              <p class="form-note">Your request is sent securely through Web3Forms.</p>
+              <p class="form-status" data-form-status role="status" aria-live="polite"></p>
             </form>
           </aside>
         </div>
@@ -172,23 +177,22 @@
               Send your details and a short note about the type of visibility you need. You
               will receive a direct reply with available options and next steps.
             </p>
-            <div class="success-message" data-success-message role="status" aria-live="polite">
-              Thanks. Your request was submitted successfully.
-            </div>
           </div>
 
           <form
             class="lead-form contact-form reveal"
-            action="https://formsubmit.co/Info@ocnjdaily.media"
+            action="https://api.web3forms.com/submit"
             method="POST"
+            data-web3forms-form
           >
-            <!-- FormSubmit leads are sent to Info@ocnjdaily.media. -->
-            <input type="hidden" name="_subject" value="New Landing Page Lead" />
-            <input type="hidden" name="_template" value="table" />
-            <input type="hidden" name="_captcha" value="false" />
-            <!-- Optional redirect after Vercel deployment:
-            <input type="hidden" name="_next" value="https://your-domain.com/?submitted=true#contact" />
-            -->
+            <input
+              type="hidden"
+              name="access_key"
+              value="350863e5-6368-47df-a6b2-18a434739c1e"
+            />
+            <input type="hidden" name="subject" value="New Landing Page Lead" />
+            <input type="hidden" name="from_name" value="OCNJDaily Media Landing Page" />
+            <input type="checkbox" name="botcheck" style="display: none;" />
 
             <label>
               <span>Name</span>
@@ -214,6 +218,7 @@
             <button class="button button-primary button-full" type="submit">
               Request Access
             </button>
+            <p class="form-status" data-form-status role="status" aria-live="polite"></p>
           </form>
         </div>
       </section>

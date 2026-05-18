@@ -34,45 +34,60 @@ Keep production changes on `main` unless you prefer feature branches and pull re
 
 Vercel will serve `index.html` as the landing page.
 
-## Replace Email in FormSubmit
+## Web3Forms Setup
 
-In `index.html`, replace both instances of:
-
-```html
-https://formsubmit.co/YOUR_EMAIL_HERE
-```
-
-with your email address:
+The forms submit to the Web3Forms endpoint:
 
 ```html
-https://formsubmit.co/you@example.com
+https://api.web3forms.com/submit
 ```
 
-The form includes these hidden fields:
+Each form includes the project access key:
 
 ```html
-_subject = New Landing Page Lead
-_template = table
-_captcha = false
+<input type="hidden" name="access_key" value="350863e5-6368-47df-a6b2-18a434739c1e">
 ```
 
-## Verify FormSubmit Email
+Web3Forms uses this public access key to route submissions to the email address connected to that key. It is not a secret server API key and can be embedded in static HTML.
+
+Dashboard: [https://app.web3forms.com/](https://app.web3forms.com/)
+
+Documentation: [https://docs.web3forms.com/](https://docs.web3forms.com/)
+
+## Web3Forms Hidden Fields
+
+The forms include:
+
+```html
+<input type="hidden" name="access_key" value="350863e5-6368-47df-a6b2-18a434739c1e">
+<input type="hidden" name="subject" value="New Landing Page Lead">
+<input type="hidden" name="from_name" value="OCNJDaily Media Landing Page">
+<input type="checkbox" name="botcheck" style="display: none;">
+```
+
+The `botcheck` field is a hidden anti-spam checkbox. Real users will not see it, but automated bots may fill it.
+
+## Rotate or Regenerate the Access Key
+
+1. Sign in to the Web3Forms dashboard.
+2. Open the form or access key settings.
+3. Regenerate or create a new access key.
+4. Replace both `access_key` values in `index.html` with the new key.
+5. Commit and redeploy the change through GitHub and Vercel.
+
+## Test Submissions
 
 1. Deploy the page or run it locally.
-2. Submit a test lead through the form.
-3. FormSubmit will send a verification email to the address used in the form action.
-4. Open the verification email and confirm the address.
-5. Submit another test lead and verify that it arrives in your inbox.
+2. Submit a test lead through either form.
+3. The page should stay in place and show an inline success message.
+4. Confirm the lead arrives in the email inbox connected to the Web3Forms access key.
+5. Check the Web3Forms dashboard if the email does not appear.
 
-## Success Redirect
+No backend, server, database, authentication, or dashboard code is required in this repository. Web3Forms handles the email delivery from the static form submission.
 
-The page includes a redirect-ready success message. After deployment, uncomment the optional `_next` field in each form and replace the domain:
+## Inline Success Handling
 
-```html
-<input type="hidden" name="_next" value="https://your-domain.com/?submitted=true#contact" />
-```
-
-When FormSubmit redirects back to that URL, the page displays the success message in the contact section.
+The `script.js` file intercepts form submissions with `fetch`, posts the data to Web3Forms, resets the form after a successful response, and displays an inline message. This avoids sending visitors to an external success page.
 
 ## Dynadot Custom Domain Setup
 

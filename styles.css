@@ -248,6 +248,12 @@ h3 {
   width: 100%;
 }
 
+.button:disabled {
+  cursor: wait;
+  opacity: 0.72;
+  transform: none;
+}
+
 .hero-proof {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -461,19 +467,30 @@ h3 {
   color: rgba(255, 255, 255, 0.74);
 }
 
-.success-message {
+.form-status {
   display: none;
-  margin-top: 28px;
-  padding: 16px 18px;
-  border: 1px solid rgba(220, 252, 231, 0.4);
+  margin: 0;
+  padding: 13px 15px;
   border-radius: var(--radius-sm);
-  color: var(--green-100);
-  background: rgba(21, 128, 61, 0.2);
+  font-size: 0.9rem;
   font-weight: 800;
+  text-align: center;
 }
 
-.success-message.is-visible {
+.form-status.is-visible {
   display: block;
+}
+
+.form-status.is-success {
+  border: 1px solid rgba(21, 128, 61, 0.22);
+  color: var(--green-700);
+  background: var(--green-100);
+}
+
+.form-status.is-error {
+  border: 1px solid rgba(185, 28, 28, 0.22);
+  color: #b91c1c;
+  background: #fee2e2;
 }
 
 .contact-form {

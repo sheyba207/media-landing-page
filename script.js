@@ -4,13 +4,6 @@ if (year) {
   year.textContent = new Date().getFullYear();
 }
 
-const params = new URLSearchParams(window.location.search);
-const successMessage = document.querySelector("[data-success-message]");
-
-if (successMessage && params.get("submitted") === "true") {
-  successMessage.classList.add("is-visible");
-}
-
 document.querySelectorAll('a[href^="#"]').forEach((link) => {
   link.addEventListener("click", (event) => {
     const targetId = link.getAttribute("href");
@@ -27,5 +20,62 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
 
     event.preventDefault();
     target.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+});
+
+document.querySelectorAll("[data-web3forms-form]").forEach((form) => {
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    const status = form.querySelector("[data-form-status]");
+    const submitButton = form.querySelector('button[type="submit"]');
+    const defaultButtonText = submitButton ? submitButton.textContent : "";
+
+    if (status) {
+      status.textContent = "";
+      status.className = "form-status";
+    }
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = "Sending...";
+    }
+
+    try {
+      const formData = new FormData(form);
+      const payload = Object.fromEntries(formData);
+
+      const response = await fetch(form.action, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || !result.success) {
+        throw new Error(result.message || "Submission failed");
+      }
+
+      form.reset();
+
+      if (status) {
+        status.textContent = "Thanks. Your request was sent successfully.";
+        status.classList.add("is-visible", "is-success");
+      }
+    } catch (error) {
+      if (status) {
+        status.textContent = "Something went wrong. Please try again in a moment.";
+        status.classList.add("is-visible", "is-error");
+      }
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = defaultButtonText;
+      }
+    }
   });
 });
