@@ -52,9 +52,6 @@
           </div>
           <div class="logo-grid reveal" aria-label="Regional media network logos">
             <article class="logo-card">
-              <img src="assets/ocnjdaily.media log.png" alt="OCNJDaily.media logo" />
-            </article>
-            <article class="logo-card">
               <img src="assets/Onjdaily.com 1.png" alt="OCNJDaily.com logo" />
             </article>
             <article class="logo-card">
@@ -130,7 +127,7 @@
       </section>
 
       <section id="contact" class="section contact-section">
-        <div class="container contact-grid">
+        <div class="container contact-stack">
           <div class="contact-copy reveal">
             <p class="eyebrow">Request media sheet</p>
             <h2>Tell us about your campaign</h2>
@@ -155,19 +152,19 @@
             <input type="hidden" name="from_name" value="OCNJDaily Media Landing Page" />
             <input type="checkbox" name="botcheck" style="display: none;" />
 
-            <label>
+            <label class="form-field">
               <span>Name</span>
               <input type="text" name="name" placeholder="Jane Smith" required />
             </label>
-            <label>
+            <label class="form-field">
               <span>Email</span>
               <input type="email" name="email" placeholder="jane@company.com" required />
             </label>
-            <label>
+            <label class="form-field form-field-wide">
               <span>Website / Company</span>
               <input type="text" name="website_company" placeholder="company.com" required />
             </label>
-            <label>
+            <label class="form-field form-field-wide">
               <span>Message</span>
               <textarea
                 name="message"
