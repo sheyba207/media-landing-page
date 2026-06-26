@@ -1,6 +1,6 @@
-# LocalWire.news Media Landing Page
+# LocalWire.media Media Landing Page
 
-A lightweight static landing page for media, SEO, and outreach lead capture on [LocalWire.news](https://www.localwire.news/). The project uses plain HTML, CSS, and minimal JavaScript, so it can be deployed for free on Vercel without a backend.
+A lightweight static landing page for media, SEO, and outreach lead capture on [LocalWire.media](https://www.localwire.media/). The project uses plain HTML, CSS, and minimal JavaScript, so it can be deployed for free on Vercel without a backend.
 
 ## Local Setup
 
@@ -116,7 +116,7 @@ The `script.js` file intercepts form submissions with `fetch`, posts the data to
 - `robots.txt` allows indexing and points to the sitemap.
 - `sitemap.xml` lists the homepage URL.
 
-Production domain: `https://www.localwire.news/`
+Production domain: `https://www.localwire.media/`
 
 ## Dynadot Custom Domain Setup
 

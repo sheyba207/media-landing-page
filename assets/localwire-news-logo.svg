@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 52" role="img" aria-label="LocalWire.news">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 52" role="img" aria-label="LocalWire.media">
   <text x="0" y="36" fill="#0f172a" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="30" font-weight="800" letter-spacing="-0.04em">LocalWire</text>
-  <text x="178" y="36" fill="#0284c7" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="30" font-weight="800" letter-spacing="-0.04em">.news</text>
+  <text x="178" y="36" fill="#0284c7" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="30" font-weight="800" letter-spacing="-0.04em">.media</text>
   <rect x="0" y="44" width="92" height="3" rx="1.5" fill="#f59e0b"/>
 </svg>
