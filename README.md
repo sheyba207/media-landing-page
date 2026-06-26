@@ -1,6 +1,6 @@
-# Media Landing Page
+# LocalWire.news Media Landing Page
 
-A lightweight static landing page for media, SEO, and outreach lead capture. The project uses plain HTML, CSS, and minimal JavaScript, so it can be deployed for free on Vercel without a backend.
+A lightweight static landing page for media, SEO, and outreach lead capture on [LocalWire.news](https://www.localwire.news/). The project uses plain HTML, CSS, and minimal JavaScript, so it can be deployed for free on Vercel without a backend.
 
 ## Local Setup
 
@@ -40,7 +40,7 @@ Logo files live in `assets/` using URL-safe filenames:
 
 | File | Partner |
 | --- | --- |
-| `ocnjdaily-media-logo.png` | Site header logo |
+| `localwire-news-logo.svg` | Site header logo |
 | `ocnjdaily-com.png` | OCNJDaily.com |
 | `sea-isle-news.jpg` | Sea Isle News |
 | `breakingac.jpg` | BreakingAC |
@@ -51,7 +51,7 @@ Logo files live in `assets/` using URL-safe filenames:
 | `broad-liberty.jpg` | Broad + Liberty |
 | `downbeach.jpg` | Downbeach |
 | `wbcb-sports.jpg` | WBCB Sports |
-| `OCNJDaily-Media-Kit-2026.pdf` | Downloadable media kit PDF |
+| `LocalWire-Media-Kit-2026.pdf` | Downloadable media kit PDF |
 | `favicon.svg` | Browser favicon |
 
 Original uploads with spaces in the filename are kept in `assets/` for reference. The site uses the URL-safe copies listed above.
@@ -82,8 +82,8 @@ The form includes:
 
 ```html
 <input type="hidden" name="access_key" value="350863e5-6368-47df-a6b2-18a434739c1e">
-<input type="hidden" name="subject" value="New Landing Page Lead">
-<input type="hidden" name="from_name" value="OCNJDaily Media Landing Page">
+<input type="hidden" name="subject" value="New LocalWire Lead">
+<input type="hidden" name="from_name" value="LocalWire Media Landing Page">
 <input type="checkbox" name="botcheck" class="visually-hidden" tabindex="-1" autocomplete="off">
 ```
 
@@ -116,7 +116,7 @@ The `script.js` file intercepts form submissions with `fetch`, posts the data to
 - `robots.txt` allows indexing and points to the sitemap.
 - `sitemap.xml` lists the homepage URL.
 
-Update the `https://ocnjdaily.media/` domain in `index.html`, `robots.txt`, and `sitemap.xml` if your production domain differs.
+Production domain: `https://www.localwire.news/`
 
 ## Dynadot Custom Domain Setup
 
