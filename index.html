@@ -25,132 +25,241 @@
       content="Gain certified guest posts and do-follow backlinks through LocalWire.media and our exclusive regional partner sites."
     />
     <meta name="twitter:image" content="https://www.localwire.media/assets/localwire-news-logo.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,800;1,9..144,400&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
     <header class="site-header">
-      <nav class="nav" aria-label="Primary navigation">
+      <div class="container">
+        <nav class="nav" aria-label="Primary navigation">
         <a class="brand" href="#top" aria-label="LocalWire.media home">
           <span class="brand-wordmark">LocalWire<span class="brand-tld">.media</span></span>
         </a>
         <div class="nav-links" aria-label="Page sections">
-          <a href="#top">HOME</a>
-          <a href="#network">OUR NETWORK</a>
-          <a href="#services">SERVICES</a>
-          <a href="#media-kit">MEDIA KIT</a>
-          <a class="nav-cta" href="#contact">REQUEST MEDIA SHEET</a>
+          <a href="#top">Home</a>
+          <a href="#network">Network</a>
+          <a href="#services">Services</a>
+          <a href="#media-kit">Media Kit</a>
+          <a class="nav-cta button button-primary" href="#contact">Request Media Sheet</a>
         </div>
-      </nav>
+        </nav>
+      </div>
     </header>
 
     <main id="top">
       <section class="hero section" id="main-content" tabindex="-1">
-        <div class="hero-bg" aria-hidden="true"></div>
-        <div class="container hero-grid">
-          <div class="hero-content reveal">
-            <h1>AMPLIFY YOUR LOCAL SEO AUTHORITY ON THE PREMIUM NEWS NETWORK</h1>
-            <p class="hero-copy">
-              Gain certified guest posts and do-follow backlinks through LocalWire.media and
-              our exclusive regional partner sites.
-            </p>
-            <div class="hero-actions">
-              <a class="button button-primary" href="#contact">REQUEST MEDIA SHEET</a>
-              <a class="button button-secondary" href="#network">VIEW OUR NETWORK</a>
+        <div class="hero-stage">
+          <div class="container hero-inner-wrap">
+            <div class="hero-inner reveal">
+              <p class="section-tag">Regional Media Placements</p>
+              <h1 class="hero-title">
+                <span class="hero-line">Amplify Your Local SEO Authority</span>
+                <span class="hero-line hero-line-accent">On the Premium News Network</span>
+              </h1>
+              <p class="hero-copy">
+                Sponsored editorial placements on regional news sites across the Jersey Shore,
+                Greater Philadelphia, and South Jersey — built for agencies that need credible,
+                permanent coverage.
+              </p>
+              <div class="hero-actions">
+                <a class="button button-primary" href="#contact">Request Media Sheet</a>
+                <a class="button button-text" href="#network">View our network</a>
+              </div>
             </div>
           </div>
+
+          <figure class="hero-visual">
+            <img
+              src="assets/hero-media.jpg"
+              alt="Media professionals reviewing editorial placement strategy"
+              width="520"
+              height="650"
+              loading="eager"
+              decoding="async"
+            />
+            <span class="hero-visual-overlay" aria-hidden="true"></span>
+          </figure>
+        </div>
+
+        <div class="marquee" aria-hidden="true">
+          <div class="marquee-track">
+            <span>Jersey Shore</span>
+            <span>Greater Philadelphia</span>
+            <span>South Jersey</span>
+            <span>Delaware Valley</span>
+            <span>State Politics</span>
+            <span>Montgomery County</span>
+            <span>Jersey Shore</span>
+            <span>Greater Philadelphia</span>
+            <span>South Jersey</span>
+            <span>Delaware Valley</span>
+            <span>State Politics</span>
+            <span>Montgomery County</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="stats-section section" aria-label="Network highlights">
+        <div class="container stats-grid reveal">
+          <article class="stat-card">
+            <p class="stat-value">6+</p>
+            <p class="stat-label">Regional markets with direct access</p>
+          </article>
+          <article class="stat-card">
+            <p class="stat-value">100%</p>
+            <p class="stat-label">Guaranteed permanent placements</p>
+          </article>
+          <article class="stat-card">
+            <p class="stat-value">B2B</p>
+            <p class="stat-label">Built for agencies &amp; SEO teams</p>
+          </article>
         </div>
       </section>
 
       <section id="network" class="section network-section">
         <div class="container">
-          <div class="section-heading reveal">
-            <p class="eyebrow">OUR PROVEN NETWORK</p>
-            <h2>REGIONAL NETWORK (DIRECT ACCESS)</h2>
+          <div class="section-intro reveal">
+            <span class="section-tag">Our Network</span>
+            <h2>Regional coverage with direct outlet access</h2>
+            <p>
+              LocalWire connects you to established news properties across the Mid-Atlantic —
+              no middle-layer resellers, no mystery domains.
+            </p>
           </div>
-          <div class="region-grid reveal" aria-label="Regional coverage markets">
-            <article class="region-card">
+
+          <div class="market-grid reveal" aria-label="Regional coverage markets">
+            <article class="market-card">
+              <span class="market-num">01</span>
               <h3>Jersey Shore</h3>
             </article>
-            <article class="region-card">
+            <article class="market-card">
+              <span class="market-num">02</span>
               <h3>Greater Philadelphia</h3>
             </article>
-            <article class="region-card">
+            <article class="market-card">
+              <span class="market-num">03</span>
               <h3>South Jersey</h3>
             </article>
-            <article class="region-card">
+            <article class="market-card">
+              <span class="market-num">04</span>
               <h3>Delaware Valley</h3>
             </article>
-            <article class="region-card">
+            <article class="market-card">
+              <span class="market-num">05</span>
               <h3>State Politics</h3>
             </article>
-            <article class="region-card">
+            <article class="market-card">
+              <span class="market-num">06</span>
               <h3>Montgomery County</h3>
             </article>
           </div>
+
+          <aside class="niche-callout reveal">
+            <div class="niche-callout-copy">
+              <span class="section-tag">Also available</span>
+              <h3>Need niche-relevant placements?</h3>
+              <p>
+                If a client needs links from sites topically matched to their industry —
+                beyond our regional outlets — we can source and place those too. Tell us the
+                niche and we&rsquo;ll quote it.
+              </p>
+            </div>
+            <a class="button button-outline" href="#contact">Ask about niche relevancy</a>
+          </aside>
         </div>
       </section>
 
-      <section id="services" class="section benefits-section">
+      <section id="services" class="section services-section">
         <div class="container">
-          <div class="section-heading reveal">
-            <p class="eyebrow">Services</p>
-            <h2>WHY AGENCIES CHOOSE OUR NETWORK</h2>
+          <div class="section-intro reveal">
+            <span class="section-tag">Our Services</span>
+            <h2>Strategic placements that build visibility and long-term authority</h2>
             <p>
-              Get more value than promoting SEO services on top-quality regional network
-              sites through LocalWire.media.
+              Get more value than generic SEO outreach — placements on top-quality regional
+              network sites through LocalWire.media.
             </p>
           </div>
-          <div class="benefit-grid">
-            <article class="benefit-card reveal">
-              <span class="benefit-icon" aria-hidden="true">01</span>
+
+          <div class="service-grid">
+            <article class="service-glass reveal">
+              <span class="service-num">01</span>
               <h3>100% Guaranteed Permanent Placements</h3>
+              <p>
+                Every placement is published on a partner news outlet and stays live — no
+                temporary links, no surprise removals.
+              </p>
             </article>
-            <article class="benefit-card reveal">
-              <span class="benefit-icon" aria-hidden="true">02</span>
+            <article class="service-glass reveal">
+              <span class="service-num">02</span>
               <h3>Hyper-Localized Mid-Atlantic Traffic</h3>
+              <p>
+                Reach audiences in the markets that matter — Jersey Shore, Philadelphia,
+                South Jersey, and surrounding regions.
+              </p>
             </article>
-            <article class="benefit-card reveal">
-              <span class="benefit-icon" aria-hidden="true">03</span>
+            <article class="service-glass reveal">
+              <span class="service-num">03</span>
               <h3>Editorial Control &amp; Rapid Indexation</h3>
+              <p>
+                Sponsored editorial content published under partner editorial policies, with
+                fast turnaround and indexation support.
+              </p>
             </article>
-            <article class="benefit-card reveal">
-              <span class="benefit-icon" aria-hidden="true">04</span>
+            <article class="service-glass reveal">
+              <span class="service-num">04</span>
               <h3>Bulk Agency Discounts Available</h3>
+              <p>
+                Volume pricing for agencies running multiple client campaigns across our
+                regional and niche placement options.
+              </p>
             </article>
           </div>
         </div>
       </section>
 
       <section id="media-kit" class="section media-kit-section">
-        <div class="container media-kit-panel reveal">
-          <div>
-            <p class="eyebrow">Media kit</p>
+        <div class="container media-kit-band reveal">
+          <div class="media-kit-copy">
+            <span class="section-tag section-tag-light">Media Kit</span>
             <h2>Get rates, placement options, and regional site availability.</h2>
           </div>
           <div class="media-kit-actions">
             <a
-              class="button button-outline"
+              class="button button-secondary-light"
               href="assets/LocalWire-Media-Kit-2026.pdf"
               download="LocalWire-Media-Kit-2026.pdf"
             >
-              DOWNLOAD MEDIA KIT
+              Download Media Kit
             </a>
-            <a class="button button-primary" href="#contact">REQUEST MEDIA SHEET</a>
+            <a class="button button-primary-light" href="#contact">Request Media Sheet</a>
           </div>
         </div>
       </section>
 
       <section id="contact" class="section contact-section">
-        <div class="container contact-stack">
+        <div class="contact-bg" aria-hidden="true">
+          <img src="assets/contact-section-bg.jpg" alt="" width="1600" height="900" decoding="async" />
+        </div>
+        <div class="container contact-layout">
           <div class="contact-copy reveal">
-            <p class="eyebrow">Request media sheet</p>
+            <span class="section-tag">Request Media Sheet</span>
             <h2>Tell us about your campaign</h2>
             <p>
-              Share your website, target markets, and approximate placement volume. We
-              will reply with the current media sheet and next available options.
+              Share your website, target markets, and approximate placement volume. We will
+              reply with the current media sheet and next available options.
             </p>
+            <ul class="contact-points">
+              <li>Response within one business day</li>
+              <li>Current rates &amp; site availability included</li>
+              <li>Agency volume pricing on request</li>
+            </ul>
           </div>
 
           <form
@@ -189,9 +298,7 @@
                 required
               ></textarea>
             </label>
-            <button class="button button-primary button-full" type="submit">
-              GET ACCESS
-            </button>
+            <button class="button button-primary button-full" type="submit">Get Access</button>
             <p class="form-status" data-form-status role="status" aria-live="polite"></p>
           </form>
         </div>
@@ -200,10 +307,11 @@
 
     <footer class="footer">
       <div class="container footer-inner">
+        <a class="footer-brand" href="#top">LocalWire<span>.media</span></a>
         <p>&copy; <span data-year></span> LocalWire.media. All Rights Reserved.</p>
-        <p>
-          Not affiliated directly with, but an authorized reseller for the listed regional
-          media network.
+        <p class="footer-disclaimer">
+          LocalWire is an independent media-buying network. All placements are published on
+          partner news outlets in accordance with editorial policies.
         </p>
       </div>
     </footer>

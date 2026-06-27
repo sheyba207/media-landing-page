@@ -19,9 +19,52 @@ document.querySelectorAll('a[href^="#"]').forEach((link) => {
     }
 
     event.preventDefault();
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    const header = document.querySelector(".site-header");
+    const headerOffset = header ? header.offsetHeight + 12 : 0;
+    const top =
+      target.getBoundingClientRect().top + window.scrollY - headerOffset;
+
+    window.scrollTo({ top, behavior: "smooth" });
   });
 });
+
+const siteHeader = document.querySelector(".site-header");
+
+if (siteHeader) {
+  let lastScrollY = window.scrollY;
+  let ticking = false;
+
+  const updateHeader = () => {
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY <= 8) {
+      siteHeader.classList.remove("is-scrolled", "is-hidden");
+    } else {
+      siteHeader.classList.add("is-scrolled");
+
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        siteHeader.classList.add("is-hidden");
+      } else {
+        siteHeader.classList.remove("is-hidden");
+      }
+    }
+
+    lastScrollY = currentScrollY;
+    ticking = false;
+  };
+
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateHeader);
+        ticking = true;
+      }
+    },
+    { passive: true }
+  );
+}
 
 const revealElements = document.querySelectorAll(".reveal");
 
