@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Order sponsored guest posts on LocalWire.media's regional news network. Pick your sites, add your articles, and pay securely with PayPal."
+    />
+    <title>Place an Order | LocalWire.media</title>
+    <link rel="canonical" href="https://www.localwire.media/order" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.localwire.media/order" />
+    <meta property="og:title" content="Place an Order | LocalWire.media" />
+    <meta
+      property="og:description"
+      content="Pick your regional news sites, add your articles, and pay with PayPal."
+    />
+    <meta property="og:image" content="https://www.localwire.media/assets/localwire-news-logo.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;0,9..144,800;1,9..144,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="order.css" />
+  </head>
+  <body class="order-page">
+    <a class="skip-link" href="#order-main">Skip to order form</a>
+
+    <header class="site-header">
+      <div class="container">
+        <nav class="nav" aria-label="Primary navigation">
+          <a class="brand" href="/" aria-label="LocalWire.media home">
+            <span class="brand-wordmark">LocalWire<span class="brand-tld">.media</span></span>
+          </a>
+          <div class="nav-links" aria-label="Page sections">
+            <a href="/">Home</a>
+            <a href="/#network">Network</a>
+            <a href="/#services">Services</a>
+            <a href="/#media-kit">Media Kit</a>
+            <a class="nav-cta button button-primary" href="/#contact">Request Media Sheet</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main id="order-main" class="order-main" tabindex="-1">
+      <div class="container order-container">
+        <!-- ===== Order form view ===== -->
+        <div id="orderView">
+          <div class="order-intro">
+            <span class="section-tag">Place an Order</span>
+            <h1 class="order-title">Order guest posts on our network</h1>
+            <p class="order-lede" data-subtitle></p>
+            <p class="order-offer" data-offer hidden></p>
+          </div>
+
+          <form id="orderForm" class="order-layout" novalidate>
+            <input type="checkbox" name="botcheck" class="visually-hidden" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+            <div class="order-steps">
+              <section class="order-step" aria-labelledby="step1">
+                <h2 id="step1"><span class="step-num">1</span>Your details</h2>
+                <div class="field-grid">
+                  <label class="o-field">
+                    <span>Full name <em>required</em></span>
+                    <input type="text" name="name" autocomplete="name" required />
+                  </label>
+                  <label class="o-field">
+                    <span>Email <em>required</em></span>
+                    <input type="email" name="email" autocomplete="email" required />
+                  </label>
+                  <label class="o-field">
+                    <span>Company or agency</span>
+                    <input type="text" name="company" autocomplete="organization" />
+                  </label>
+                  <label class="o-field">
+                    <span>WhatsApp or phone</span>
+                    <input type="tel" name="phone" autocomplete="tel" />
+                  </label>
+                </div>
+              </section>
+
+              <section class="order-step" aria-labelledby="step2">
+                <h2 id="step2"><span class="step-num">2</span>Choose websites</h2>
+                <p class="step-hint" data-price-hint></p>
+                <div class="site-toolbar">
+                  <button type="button" class="link-btn" data-select="all">Select all</button>
+                  <button type="button" class="link-btn" data-select="none">Clear</button>
+                  <span class="site-count" data-site-count aria-live="polite"></span>
+                </div>
+                <fieldset class="site-grid" data-sites>
+                  <legend class="visually-hidden">Websites</legend>
+                </fieldset>
+              </section>
+
+              <section class="order-step" aria-labelledby="step3">
+                <h2 id="step3"><span class="step-num">3</span>Post details</h2>
+                <p class="step-hint">For each site, add your article (Google Doc link) and the page you want linked.</p>
+                <label class="o-field free-pick" data-free-wrap hidden>
+                  <span>Which site should carry your free first post?</span>
+                  <select data-free-site></select>
+                </label>
+                <div data-posts>
+                  <p class="posts-empty">Choose at least one website in step 2 to add post details here.</p>
+                </div>
+              </section>
+
+              <section class="order-step" aria-labelledby="step4">
+                <h2 id="step4"><span class="step-num">4</span>Anything else?</h2>
+                <label class="o-field">
+                  <span>Notes for our team</span>
+                  <textarea name="notes" rows="3" placeholder="Deadlines, publishing dates, special instructions"></textarea>
+                </label>
+              </section>
+            </div>
+
+            <aside class="order-summary" aria-labelledby="summaryTitle">
+              <div class="summary-inner">
+                <h2 id="summaryTitle">Your order</h2>
+                <dl class="summary-rows" data-breakdown></dl>
+                <p class="summary-total">
+                  <span>Total</span>
+                  <strong data-total>$0</strong>
+                </p>
+                <p class="summary-note" data-pay-hint></p>
+                <button type="submit" class="button button-primary button-full" data-submit>
+                  Place order &amp; pay with PayPal
+                </button>
+                <p class="form-status" data-error role="alert"></p>
+              </div>
+            </aside>
+          </form>
+        </div>
+
+        <!-- ===== Confirmation view ===== -->
+        <div id="doneView" class="done-view" hidden>
+          <div class="order-intro">
+            <span class="section-tag">Order received</span>
+            <h1 class="order-title" tabindex="-1" data-done-title>Thanks, your order is in</h1>
+            <p class="order-lede">Order ID <strong data-done-id></strong>. Keep it for your payment note.</p>
+          </div>
+
+          <div class="done-grid">
+            <section class="order-step" aria-labelledby="doneSummary">
+              <h2 id="doneSummary">Order summary</h2>
+              <dl class="summary-rows summary-rows-lg" data-done-summary></dl>
+            </section>
+
+            <section class="order-step pay-step" aria-labelledby="donePay">
+              <h2 id="donePay" data-pay-title>Complete your payment</h2>
+              <p class="step-hint" data-pay-text></p>
+              <div class="pay-box" data-pay-box></div>
+              <p class="pay-after" data-pay-after></p>
+            </section>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-inner">
+        <a class="footer-brand" href="/">LocalWire<span>.media</span></a>
+        <p>&copy; <span data-year></span> LocalWire.media. All Rights Reserved.</p>
+        <p class="footer-disclaimer">
+          LocalWire is an independent media-buying network. All placements are published on
+          news outlets in accordance with editorial policies.
+        </p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="order.js"></script>
+  </body>
+</html>
