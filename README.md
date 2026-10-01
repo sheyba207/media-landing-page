@@ -150,3 +150,16 @@ Use the exact records Vercel shows for your project if they differ.
 ## SSL
 
 SSL is automatic through Vercel. After DNS propagation completes, Vercel provisions and renews the HTTPS certificate for the connected domain.
+
+## Order Form (`/order`)
+
+`order.html` + `order.css` + `order.js` add a guest-post order page at `https://www.localwire.media/order` (clean URL via `vercel.json`). It is linked from the homepage nav, hero, and media kit band.
+
+Flow: customer enters details → picks sites → adds a Google Doc link, target URL, and anchor per site → submits. The order is emailed through the same Web3Forms key as the contact form, then the customer is redirected to PayPal with the amount and order ID prefilled. If Web3Forms fails, the page shows a `mailto:` fallback so the order is not lost.
+
+All business settings live in the `CONFIG` block at the top of `order.js`: price per post, first-post-free offer, offer text, PayPal email, PayPal fee %, site list, and after-payment note.
+
+Notes:
+
+- Totals are calculated in the browser. Always check the amount received in PayPal against the total in the order email (match by order ID, sent as the PayPal invoice/item number).
+- Web3Forms free plan has a monthly submission cap shared by the contact form and order form. Check the dashboard if volume grows.
