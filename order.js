@@ -11,8 +11,9 @@ const CONFIG = {
   pricePerPost: 20,
   currency: "$",
   currencyCode: "USD",
-  // Every (buy + free) posts, `free` of them cost nothing. 5 + 1 = every 6th post free.
-  bulkOffer: { buy: 5, free: 1 },
+  // Buy `buy` posts, get `free` more at no cost. repeat:false = applies once per order
+  // (6 sites = 1 free, 20 sites = still 1 free). repeat:true = every 6th, 12th, ... free.
+  bulkOffer: { buy: 5, free: 1, repeat: false },
 
   paypalEmail: "marksteven002679@gmail.com",
   paypalFeePercent: 6,
@@ -139,7 +140,8 @@ const CONFIG = {
   /* ---------- Pricing ---------- */
   function calc() {
     const n = selected.size;
-    const free = bundle ? Math.floor(n / bundle) * offer.free : 0;
+    const bundles = bundle ? Math.floor(n / bundle) : 0;
+    const free = (offer && offer.repeat ? bundles : Math.min(bundles, 1)) * (offer ? offer.free : 0);
     const paid = n - free;
     const subtotal = paid * CONFIG.pricePerPost;
     const fee = Math.round(subtotal * CONFIG.paypalFeePercent) / 100;
@@ -159,11 +161,13 @@ const CONFIG = {
 
   function offerNudge(c) {
     if (!bundle || c.n === 0) return "";
+    if (c.free && !offer.repeat) return `You’ve unlocked your free post.`;
     const toNext = bundle - (c.n % bundle);
     const freeWord = offer.free === 1 ? "it’s free" : `${offer.free} are free`;
     if (toNext === offer.free) return `Add ${offer.free === 1 ? "1 more site" : `${offer.free} more sites`}: ${freeWord}.`;
     if (c.free) return `You’ve unlocked ${c.free} free post${c.free > 1 ? "s" : ""}. ${toNext} more site${toNext > 1 ? "s" : ""} for the next one.`;
-    return `Add ${toNext - offer.free} more site${toNext - offer.free > 1 ? "s" : ""} and get the next one free.`;
+    const more = toNext - offer.free;
+    return `Add ${more} more site${more > 1 ? "s" : ""} and get the ${offer.repeat ? "next one" : ordinal(bundle)} free.`;
   }
 
   function updateTotal() {
@@ -171,7 +175,7 @@ const CONFIG = {
     const nudge = $("[data-nudge]");
     nudge.textContent = offerNudge(c);
     nudge.hidden = !nudge.textContent;
-    nudge.classList.toggle("is-unlock", bundle > 0 && c.n % bundle === bundle - 1);
+    nudge.classList.toggle("is-unlock", bundle > 0 && c.n % bundle === bundle - 1 && (offer.repeat || !c.free));
     $("[data-breakdown]").innerHTML = dl(breakdownRows(c));
     $("[data-total]").textContent = money(c.total);
   }
