@@ -157,7 +157,7 @@ SSL is automatic through Vercel. After DNS propagation completes, Vercel provisi
 
 Flow: customer enters details → picks sites → adds a Google Doc link, target URL, and anchor per site → submits. The order is emailed through the same Web3Forms key as the contact form, then the customer is redirected to PayPal with the amount and order ID prefilled. If Web3Forms fails, the page shows a `mailto:` fallback so the order is not lost.
 
-All business settings live in the `CONFIG` block at the top of `order.js`: price per post, first-post-free offer, offer text, PayPal email, PayPal fee %, site list, and after-payment note.
+All business settings live in the `CONFIG` block at the top of `order.js`: price per post, bulk offer (`bulkOffer`, default buy 5 get the 6th free, repeating), offer text, PayPal email, PayPal fee %, site list, and after-payment note.
 
 Notes:
 

@@ -221,7 +221,7 @@ body.order-page {
   background: var(--paper);
   cursor: pointer;
   font-size: 0.92rem;
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
   transition: border-color 150ms ease, background 150ms ease;
 }
 
@@ -250,10 +250,6 @@ body.order-page {
 
 /* Post blocks */
 
-.free-pick {
-  margin-bottom: 14px;
-}
-
 .posts-empty {
   margin: 0;
   padding: 18px;
@@ -281,16 +277,6 @@ body.order-page {
   margin: 0;
   font-size: 1rem;
   overflow-wrap: anywhere;
-}
-
-.free-tag {
-  flex: none;
-  padding: 2px 10px;
-  border-radius: 999px;
-  color: var(--green);
-  background: var(--green-bg);
-  font-size: 0.75rem;
-  font-weight: 700;
 }
 
 .post-block .field-grid {
@@ -339,6 +325,21 @@ body.order-page {
   margin: 0;
   font-weight: 600;
   text-align: right;
+}
+
+.offer-nudge {
+  margin: 14px 0 0;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--cream);
+  background: rgba(254, 234, 210, 0.1);
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+
+.offer-nudge.is-unlock {
+  color: var(--espresso);
+  background: var(--terracotta);
 }
 
 .summary-total {
@@ -467,6 +468,10 @@ body.order-page {
   .summary-inner .summary-rows,
   .summary-inner .summary-note {
     display: none;
+  }
+
+  .offer-nudge {
+    margin: 0 0 10px;
   }
 
   .summary-total {

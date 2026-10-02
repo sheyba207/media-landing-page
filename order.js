@@ -6,12 +6,13 @@ const CONFIG = {
   brandName: "LocalWire.media",
   subtitle:
     "Pick the sites, add your articles, and pay with PayPal. Posts go live within 2–4 business days after payment.",
-  offerText: "October special: $20 per post, and your first post is free",
+  offerText: "October special: $20 per post. Buy 5, get the 6th free",
 
   pricePerPost: 20,
   currency: "$",
   currencyCode: "USD",
-  firstPostFree: true,
+  // Every (buy + free) posts, `free` of them cost nothing. 5 + 1 = every 6th post free.
+  bulkOffer: { buy: 5, free: 1 },
 
   paypalEmail: "marksteven002679@gmail.com",
   paypalFeePercent: 6,
@@ -45,6 +46,8 @@ const CONFIG = {
   const money = (n) =>
     CONFIG.currency + (Number.isInteger(n) ? n.toLocaleString("en-US") : n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }));
 
+  const ordinal = (n) => n + (["th", "st", "nd", "rd"][(n % 100 >> 3) ^ 1 && n % 10] || "th");
+
   const form = $("#orderForm");
   if (!form) return;
 
@@ -58,8 +61,11 @@ const CONFIG = {
     offer.textContent = CONFIG.offerText;
     offer.hidden = false;
   }
+  const offer = CONFIG.bulkOffer;
+  const bundle = offer ? offer.buy + offer.free : 0;
   $("[data-price-hint]").textContent =
-    `${money(CONFIG.pricePerPost)} per post` + (CONFIG.firstPostFree ? ". Your first post is free." : ".");
+    `${money(CONFIG.pricePerPost)} per post` +
+    (offer ? `. Buy ${offer.buy}, get ${offer.free === 1 ? `the ${ordinal(bundle)}` : offer.free} free.` : ".");
   $("[data-pay-hint]").textContent =
     `Payment by PayPal. Total includes a ${CONFIG.paypalFeePercent}% PayPal processing fee.`;
 
@@ -68,7 +74,7 @@ const CONFIG = {
   sitesEl.insertAdjacentHTML(
     "beforeend",
     CONFIG.sites
-      .map((s) => `<label class="site-option"><input type="checkbox" value="${esc(s)}" />${esc(s)}</label>`)
+      .map((s) => `<label class="site-option"><input type="checkbox" value="${esc(s)}" /><span>${esc(s).replace(/\.(?=[^.]+$)/, "<wbr>.")}</span></label>`)
       .join("")
   );
 
@@ -106,26 +112,13 @@ const CONFIG = {
     saveInputs();
     const list = orderedSel();
 
-    const freeWrap = $("[data-free-wrap]");
-    const freeSel = $("[data-free-site]");
-    const prevFree = freeSel.value;
-    if (CONFIG.firstPostFree && list.length > 1) {
-      freeWrap.hidden = false;
-      freeSel.innerHTML = list
-        .map((s) => `<option value="${esc(s)}"${s === prevFree ? " selected" : ""}>${esc(s)}</option>`)
-        .join("");
-    } else {
-      freeWrap.hidden = true;
-      freeSel.innerHTML = list.length ? `<option value="${esc(list[0])}">${esc(list[0])}</option>` : "";
-    }
-
     $("[data-posts]").innerHTML = list.length
       ? list
           .map((s, i) => {
             const d = postData[s] || {};
             const id = `p${i}`;
             return `<div class="post-block" data-site="${esc(s)}">
-              <h3>${esc(s)}<span class="free-tag" data-free-tag hidden>Free</span></h3>
+              <h3>${esc(s)}</h3>
               <div class="field-grid">
                 <label class="o-field"><span>Article link (Google Doc) <em>required</em></span>
                   <input type="url" id="${id}-doc" data-f="doc" inputmode="url" placeholder="https://docs.google.com/…" value="${esc(d.doc)}" /></label>
@@ -143,12 +136,10 @@ const CONFIG = {
     updateTotal();
   }
 
-  $("[data-free-site]").addEventListener("change", updateTotal);
-
   /* ---------- Pricing ---------- */
   function calc() {
     const n = selected.size;
-    const free = CONFIG.firstPostFree && n > 0 ? 1 : 0;
+    const free = bundle ? Math.floor(n / bundle) * offer.free : 0;
     const paid = n - free;
     const subtotal = paid * CONFIG.pricePerPost;
     const fee = Math.round(subtotal * CONFIG.paypalFeePercent) / 100;
@@ -158,7 +149,7 @@ const CONFIG = {
 
   function breakdownRows(c) {
     return [
-      [`Posts (${c.n})`, c.n ? `${c.paid} × ${money(CONFIG.pricePerPost)}${c.free ? " + 1 free" : ""}` : "None yet"],
+      [`Posts (${c.n})`, c.n ? `${c.paid} × ${money(CONFIG.pricePerPost)}${c.free ? ` + ${c.free} free` : ""}` : "None yet"],
       ["Subtotal", money(c.subtotal)],
       [`PayPal fee (${CONFIG.paypalFeePercent}%)`, money(c.fee)],
     ];
@@ -166,12 +157,21 @@ const CONFIG = {
 
   const dl = (rows) => rows.map(([k, v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("");
 
+  function offerNudge(c) {
+    if (!bundle || c.n === 0) return "";
+    const toNext = bundle - (c.n % bundle);
+    const freeWord = offer.free === 1 ? "it’s free" : `${offer.free} are free`;
+    if (toNext === offer.free) return `Add ${offer.free === 1 ? "1 more site" : `${offer.free} more sites`}: ${freeWord}.`;
+    if (c.free) return `You’ve unlocked ${c.free} free post${c.free > 1 ? "s" : ""}. ${toNext} more site${toNext > 1 ? "s" : ""} for the next one.`;
+    return `Add ${toNext - offer.free} more site${toNext - offer.free > 1 ? "s" : ""} and get the next one free.`;
+  }
+
   function updateTotal() {
     const c = calc();
-    const freeSite = $("[data-free-site]").value;
-    $$(".post-block").forEach((p) => {
-      $("[data-free-tag]", p).hidden = !(c.free && p.dataset.site === freeSite);
-    });
+    const nudge = $("[data-nudge]");
+    nudge.textContent = offerNudge(c);
+    nudge.hidden = !nudge.textContent;
+    nudge.classList.toggle("is-unlock", bundle > 0 && c.n % bundle === bundle - 1);
     $("[data-breakdown]").innerHTML = dl(breakdownRows(c));
     $("[data-total]").textContent = money(c.total);
   }
@@ -277,7 +277,6 @@ const CONFIG = {
 
     const list = orderedSel();
     const c = calc();
-    const freeSite = c.free ? $("[data-free-site]").value : "";
     const id = makeOrderId();
     const name = form.elements.name.value.trim();
     const email = form.elements.email.value.trim();
@@ -285,7 +284,7 @@ const CONFIG = {
     const postsText = list
       .map((s, i) => {
         const d = postData[s];
-        return `${i + 1}. ${s}${s === freeSite ? " (FREE)" : ""}\n   Article: ${d.doc.trim()}\n   Target: ${d.target.trim()}\n   Anchor: ${d.anchor.trim() || "-"}`;
+        return `${i + 1}. ${s}\n   Article: ${d.doc.trim()}\n   Target: ${d.target.trim()}\n   Anchor: ${d.anchor.trim() || "-"}`;
       })
       .join("\n\n");
 
@@ -295,7 +294,7 @@ const CONFIG = {
       Email: email,
       Company: form.elements.company.value.trim() || "-",
       "Phone / WhatsApp": form.elements.phone.value.trim() || "-",
-      Websites: `${c.n} (${c.free ? "1 free, " : ""}${c.paid} paid)`,
+      Websites: `${c.n} (${c.paid} paid${c.free ? `, ${c.free} free` : ""})`,
       Subtotal: money(c.subtotal),
       [`PayPal fee (${CONFIG.paypalFeePercent}%)`]: money(c.fee),
       Total: money(c.total),
@@ -340,7 +339,7 @@ const CONFIG = {
     const mailBody = Object.entries(orderFields).map(([k, v]) => `${k}: ${v}`).join("\n");
     const mailLink = `mailto:${CONFIG.fallbackEmail}?subject=${encodeURIComponent(payload.subject)}&body=${encodeURIComponent(mailBody)}`;
 
-    showDone({ id, name, email, list, freeSite, c, sent, mailLink });
+    showDone({ id, name, email, list, c, sent, mailLink });
 
     if (sent && c.total > 0 && CONFIG.redirectToPayPalMs >= 0) {
       setTimeout(() => {
@@ -350,7 +349,7 @@ const CONFIG = {
   });
 
   /* ---------- Confirmation ---------- */
-  function showDone({ id, name, email, list, freeSite, c, sent, mailLink }) {
+  function showDone({ id, name, email, list, c, sent, mailLink }) {
     $("#orderView").hidden = true;
     $("#doneView").hidden = false;
     window.scrollTo(0, 0);
@@ -359,7 +358,7 @@ const CONFIG = {
     $("[data-done-summary]").innerHTML = dl([
       ["Name", name],
       ["Email", email],
-      ["Websites", list.map((s) => s + (s === freeSite ? " (free)" : "")).join(", ")],
+      ["Websites", list.join(", ")],
       ...breakdownRows(c).slice(1),
       ["Total", money(c.total)],
     ]);
@@ -376,7 +375,7 @@ const CONFIG = {
     if (c.total === 0) {
       title.textContent = "No payment needed";
       text.innerHTML = sent
-        ? "Your first post is free. We’ll get started and email you when it’s live."
+        ? "No payment is due for this order. We’ll get started and email you when it’s live."
         : `We couldn’t send your order automatically. <a href="${esc(mailLink)}">Email it to us</a> and we’ll get started.`;
       box.hidden = true;
       $("[data-done-title]").focus();
