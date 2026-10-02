@@ -67,7 +67,7 @@ https://api.web3forms.com/submit
 The form includes the project access key:
 
 ```html
-<input type="hidden" name="access_key" value="350863e5-6368-47df-a6b2-18a434739c1e">
+<input type="hidden" name="access_key" value="ac0034b8-6374-4c45-a278-66d264969d27">
 ```
 
 Web3Forms uses this public access key to route submissions to the email address connected to that key. It is not a secret server API key and can be embedded in static HTML.
@@ -81,7 +81,7 @@ Documentation: [https://docs.web3forms.com/](https://docs.web3forms.com/)
 The form includes:
 
 ```html
-<input type="hidden" name="access_key" value="350863e5-6368-47df-a6b2-18a434739c1e">
+<input type="hidden" name="access_key" value="ac0034b8-6374-4c45-a278-66d264969d27">
 <input type="hidden" name="subject" value="New LocalWire Lead">
 <input type="hidden" name="from_name" value="LocalWire Media Landing Page">
 <input type="checkbox" name="botcheck" class="visually-hidden" tabindex="-1" autocomplete="off">

@@ -17,7 +17,7 @@ const CONFIG = {
   paypalFeePercent: 6,
 
   // Same Web3Forms key as the contact form on index.html — orders land in that inbox.
-  web3formsKey: "350863e5-6368-47df-a6b2-18a434739c1e",
+  web3formsKey: "ac0034b8-6374-4c45-a278-66d264969d27",
   fallbackEmail: "hello@localwire.media",
 
   afterPaymentNote:
